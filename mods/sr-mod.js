@@ -2,10 +2,11 @@
  *
  * The mod body lives in mods/parts as byte slices so every file stays small
  * enough to review and patch: parts 1-5 are the mod itself, part 6 is the
- * scene capture layer and part 7 finds the car in a scene where nothing has
- * a name. Every part except the last one gets its boot tail cut here, so the
- * joined source is still one closure with one boot. The slices are NOT
- * standalone scripts, only the joined source parses.
+ * scene capture layer, part 7 finds the car in a scene where nothing has a
+ * name and part 8 rebuilds the three.js classes this build never exposes.
+ * Every part except the last one gets its boot tail cut here, so the joined
+ * source is still one closure with one boot. The slices are NOT standalone
+ * scripts, only the joined source parses.
  *
  * The hooks below MUST live in this file. This is a classic script in <head>,
  * so it runs before the game bundle, while the body is fetched and therefore
@@ -14,7 +15,7 @@
  * seen early is parked on window.__SR_EARLY__ and adopted by part 6.
  */
 (function () {
-	var VER = "0.6.2";
+	var VER = "0.6.3";
 
 	var early = window.__SR_EARLY__ || (window.__SR_EARLY__ = {
 		scenes: [],
@@ -55,7 +56,7 @@
 		HTMLCanvasElement.prototype.getContext = function (type) {
 			var ctx = getCtx.apply(this, arguments);
 			try {
-				if (ctx && /webgl/i.test(String(type))) {
+				if (ctx && /webgl|webgpu/i.test(String(type))) {
 					keep(early.canvases, this);
 					if (early.ctx.indexOf(String(type)) < 0) early.ctx.push(String(type));
 				}
@@ -73,7 +74,8 @@
 		"parts/sr-mod.4.js",
 		"parts/sr-mod.5.js",
 		"parts/sr-mod.6.js",
-		"parts/sr-mod.7.js"
+		"parts/sr-mod.7.js",
+		"parts/sr-mod.8.js"
 	];
 	var BOOT = "\n\tbootSync();";
 
