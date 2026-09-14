@@ -164,7 +164,7 @@
 		applyVis();
 		makeMediaFrame();
 		if (!lamps.list.length && three.anchor) buildLamps(three.anchor);
-		toast("panels welded onto the car (" + three.how + ") \\u00b7 look ahead + F6 to refit \\u00b7 F3 to nudge");
+		toast("panels welded onto the car (" + three.how + ") \u00b7 look ahead + F6 to refit \u00b7 F3 to nudge");
 	}
 
 	/* --------------------------------------------- 8. youtube on the dash
@@ -181,7 +181,7 @@
 
 	function ytId(s) {
 		s = String(s || "").trim();
-		var m = /(?:v=|v\\/|youtu\\.be\\/|embed\\/|shorts\\/|list=)([A-Za-z0-9_-]{6,})/.exec(s);
+		var m = /(?:v=|v\/|youtu\.be\/|embed\/|shorts\/|list=)([A-Za-z0-9_-]{6,})/.exec(s);
 		if (m) return m[1];
 		if (/^[A-Za-z0-9_-]{6,}$/.test(s)) return s;
 		return null;
