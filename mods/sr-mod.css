@@ -1,6 +1,7 @@
-/* slow-roads mod layer v0.3.0
- * Shell for the canvas panels. In 3d mode the same canvases are uploaded as
- * textures on planes welded to the car, and these dom copies stay hidden.
+/* slow-roads mod layer v0.4.0
+ * In-car mode keeps the dom panels hidden: the cluster and the centre screen
+ * are canvas textures inside the three.js scene. The only dom pieces left are
+ * the overlay fallback, the toast strip and the warped youtube player.
  */
 
 [data-sr-hidden] {
@@ -12,81 +13,5 @@
 	inset: 0;
 	z-index: 2147483000;
 	pointer-events: none;
-	color: #eaf7fc;
 	font-family: "ShareTech", "Share Tech Mono", "Jura", ui-monospace, monospace;
-}
-
-#sr-hud.sr-3d .sr-panel {
-	display: none;
-}
-
-.sr-panel {
-	position: absolute;
-	transform-origin: 50% 50%;
-	filter: drop-shadow(0 10px 26px rgba(0, 0, 0, 0.45));
-}
-
-.sr-panel.sr-off {
-	display: none;
-}
-
-.sr-canvas {
-	display: block;
-	width: 100%;
-	height: auto;
-	mix-blend-mode: screen;
-}
-
-#sr-hud.sr-editing .sr-panel {
-	outline: 1px dashed rgba(69, 200, 240, 0.5);
-	outline-offset: 6px;
-}
-
-#sr-hud.sr-editing .sr-panel.sr-sel {
-	outline: 2px solid rgba(69, 200, 240, 0.9);
-}
-
-#sr-hud.sr-editing .sr-panel::after {
-	content: attr(data-sr-panel);
-	position: absolute;
-	left: 0;
-	top: -22px;
-	font-size: 12px;
-	letter-spacing: 0.14em;
-	text-transform: uppercase;
-	color: rgba(69, 200, 240, 0.9);
-}
-
-#sr-toasts {
-	position: absolute;
-	top: 3.5%;
-	left: 50%;
-	transform: translateX(-50%);
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 6px;
-}
-
-.sr-toast {
-	padding: 7px 14px;
-	border-radius: 999px;
-	font-size: 13px;
-	letter-spacing: 0.05em;
-	color: #dceaf0;
-	background: rgba(6, 10, 14, 0.72);
-	border: 1px solid rgba(255, 255, 255, 0.12);
-	backdrop-filter: blur(6px);
-	transition: opacity 0.45s ease, transform 0.45s ease;
-}
-
-.sr-toast-out {
-	opacity: 0;
-	transform: translateY(-8px);
-}
-
-@media (max-width: 760px) {
-	#sr-screen {
-		display: none !important;
-	}
-}
+	-
