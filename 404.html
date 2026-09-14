@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>s&#8202;l&#8202;o&#8202;w&nbsp;&nbsp;r&#8202;o&#8202;a&#8202;d&#8202;s</title>
+    <script>
+      (function () {
+        var path = location.pathname;
+        var seg = path.split("/").filter(Boolean)[0] || "";
+        var base = seg ? "/" + seg + "/" : "/";
+        if (path !== base && location.search.indexOf("sr404") === -1) {
+          location.replace(base + "?sr404=1");
+        }
+      })();
+    </script>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #111;
+        color: #eee;
+        font-family: system-ui, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Page not found — <a href="./" style="color: #9cf">back to the road</a>.</p>
+  </body>
+</html>
